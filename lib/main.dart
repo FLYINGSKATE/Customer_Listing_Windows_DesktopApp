@@ -1,6 +1,9 @@
 // Don't forget to make the changes mentioned in
 // https://github.com/bitsdojo/bitsdojo_window#getting-started
 
+import 'package:customer_listing_desktop_app/utils/CustomTheme.dart';
+import 'package:customer_listing_desktop_app/utils/Router.dart';
+import 'package:customer_listing_desktop_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
@@ -12,7 +15,7 @@ void main() {
     win.minSize = initialSize;
     win.size = initialSize;
     win.alignment = Alignment.center;
-    win.title = "Custom window with Flutter";
+    win.title = "Subscribo! Customer Listing & Management";
     win.show();
   });
 }
@@ -25,24 +28,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme:CustomThemes.light,
       debugShowCheckedModeBanner: false,
+      //initialRoute: '/',
+      initialRoute: 'HomeScreen',
+      onGenerateRoute: ScreenRouter.generateRoute,
 
-      
-
-      home: Scaffold(
+      /*home: Scaffold(
         body: WindowBorder(
-          color: borderColor,
+          color: primaryColorOfApp,
           width: 1,
           child: Row(
             children: const [LeftSide(), RightSide()],
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
 
-const sidebarColor = Color(0xFFF6A00C);
+Color sidebarColor = primaryColorOfApp;
 
 class LeftSide extends StatelessWidget {
   const LeftSide({Key? key}) : super(key: key);
@@ -90,16 +95,16 @@ class RightSide extends StatelessWidget {
 }
 
 final buttonColors = WindowButtonColors(
-    iconNormal: const Color(0xFF805306),
-    mouseOver: const Color(0xFFF6A00C),
-    mouseDown: const Color(0xFF805306),
-    iconMouseOver: const Color(0xFF805306),
-    iconMouseDown: const Color(0xFFFFD500));
+    iconNormal: Colors.white,
+    mouseOver: Colors.white.withOpacity(0.7),
+    mouseDown: Colors.white,
+    iconMouseOver: primaryColorOfApp.withOpacity(0.7),
+    iconMouseDown: primaryColorOfApp);
 
 final closeButtonColors = WindowButtonColors(
-    mouseOver: const Color(0xFFD32F2F),
+    mouseOver: Colors.redAccent,
     mouseDown: const Color(0xFFB71C1C),
-    iconNormal: const Color(0xFF805306),
+    iconNormal: Colors.white,
     iconMouseOver: Colors.white);
 
 class WindowButtons extends StatefulWidget {

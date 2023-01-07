@@ -43,6 +43,7 @@ dependencies:
   email_validator: ^2.1.17
   http: ^0.13.5
   intl: ^0.18.0
+  shared_preferences: ^2.0.15
 
 
 dev_dependencies:
@@ -68,8 +69,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/subscribo.png
+    - assets/subscribo_app_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

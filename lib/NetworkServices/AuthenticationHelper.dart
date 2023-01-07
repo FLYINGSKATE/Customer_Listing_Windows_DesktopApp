@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:customer_listing_desktop_app/utils/globals.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AuthenticationHelper {
@@ -24,7 +25,18 @@ class AuthenticationHelper {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      String result = await response.stream.bytesToString();
+      print(result);
+      Map valueMap = jsonDecode(result);
+      print(valueMap);
+      print(valueMap.keys);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("idToken",valueMap["idToken"]);
+      prefs.setString("email",valueMap["email"]);
+      prefs.setString("refreshToken",valueMap["refreshToken"]);
+      prefs.setString("localId",valueMap["localId"]);
+
       return true;
     }
     else {
@@ -49,7 +61,18 @@ class AuthenticationHelper {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      String result = await response.stream.bytesToString();
+      print(result);
+      Map valueMap = jsonDecode(result);
+      print(valueMap);
+      print(valueMap.keys);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("idToken",valueMap["idToken"]);
+      prefs.setString("email",valueMap["email"]);
+      prefs.setString("refreshToken",valueMap["refreshToken"]);
+      prefs.setString("localId",valueMap["localId"]);
+
       return true;
     }
     else {

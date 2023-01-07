@@ -23,14 +23,19 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return // Generated code for this Column Widget...
-      Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+      Container(
+        width: 200,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+            Container(
+              width: 400,
+              padding: EdgeInsets.only(top: 20,bottom:10 ),
               child: TextFormField(
                 controller: emailAddressController,
                 obscureText: false,
@@ -91,8 +96,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 maxLines: null,
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+            Container(
+              width: 400,
+              padding: EdgeInsets.only(top: 10,bottom:20 ),
               child: TextFormField(
                 maxLines: 1,
                 controller: passwordController,
@@ -167,8 +173,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+            Container(
+              width:200 ,
+              height: 50,
+              //padding: EdgeInsets.only(top: 20,bottom:0 ),
               child: ElevatedButton(
                 onPressed: () async {
 
@@ -224,15 +232,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 },
                 child: Text('Sign In'),
 
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-              child: TextButton(
-                  onPressed: () {
-                    print('Button-ForgotPassword pressed ...');
-                  },
-                  child:Text('or',style: TextStyle(color: Theme.of(context).backgroundColor),)
               ),
             ),
             /*Padding(

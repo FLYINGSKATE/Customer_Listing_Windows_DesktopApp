@@ -1,3 +1,4 @@
+import 'package:customer_listing_desktop_app/NetworkServices/AuthenticationHelper.dart';
 import 'package:customer_listing_desktop_app/utils/utility.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return // Generated code for this Column Widget...
-      Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
-        child: Column(
+      Container(
+        width: 200,child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+            Container(
+              width: 400,
+              padding: EdgeInsets.only(top: 20,bottom:10 ),
               child: TextFormField(
                 controller: emailAddressController,
                 obscureText: false,
@@ -94,8 +95,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 maxLines: null,
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+            Container(
+              width: 400,
+              padding: EdgeInsets.only(top: 10,bottom:20 ),
               child: TextFormField(
                 maxLines: 1,
                 controller: passwordController,
@@ -170,10 +172,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+            Container(
+              width:200 ,
+              height: 50,
               child: ElevatedButton(
                 onPressed: () async {
+
+                  AuthenticationHelper().signIn("vlogstuds6@gmail.com", "password");
+                  //ApiRepository().AddUser("papichulo@gmail.com", "password");
                   //Check Validation
 
                   ///Show Loader here
@@ -226,15 +232,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-              child: TextButton(
-                  onPressed: () {
-                    print('Button-ForgotPassword pressed ...');
-                  },
-                  child:Text('or',style: TextStyle(color: Theme.of(context).backgroundColor),)
-              ),
-            ),
+
             /*Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: ElevatedButton(

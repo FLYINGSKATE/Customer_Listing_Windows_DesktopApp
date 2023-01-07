@@ -1,4 +1,6 @@
 
+import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:customer_listing_desktop_app/main.dart';
 import 'package:flutter/material.dart';
 
 import 'SignInTab.dart';
@@ -14,8 +16,15 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
 
   ImageProvider splashScreenLogo = AssetImage("assets/subscribo.png");
+  Size preferredSizeForThisWindow = Size(1080, 720);
 
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    appWindow.minSize = preferredSizeForThisWindow;
+    appWindow.size = preferredSizeForThisWindow;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +37,25 @@ class _AuthScreenState extends State<AuthScreen> {
             backgroundColor:Theme.of(context).primaryColor,
             body: Column(
               children: <Widget>[
+                WindowTitleBarBox(
+                  child: Container(
+                    color:Theme.of(context).primaryColor,
+                    child: Row(
+                      children: [Expanded(child: MoveWindow()), const WindowButtons()],
+                    ),
+                  ),
+                ),
                 // construct the profile details widget here
                 SizedBox(height: 20,),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+
                       Container(
-                        height: MediaQuery.of(context).size.height*0.13,
-                        width: MediaQuery.of(context).size.width*0.2,
+                        height: 120,
+                        width: 100,
                         decoration: new BoxDecoration(
                           image: DecorationImage(
                             image: splashScreenLogo,
@@ -45,7 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                      SizedBox(width:20,),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,9 +84,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
                 // the tab bar with two items
-                Padding(padding: EdgeInsets.symmetric(horizontal: 50),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 0),
                   child: SizedBox(
                     height: 100,
+                    width: MediaQuery.of(context).size.width*0.4,
                     child: AppBar(
                       elevation: 0,
                       backgroundColor: Theme.of(context).primaryColor,
