@@ -1,10 +1,7 @@
-/*
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:customer_listing_app/utils/ApiRepository.dart';
 import 'package:customer_listing_desktop_app/NetworkServices/FirebaseApiRepository.dart';
+import 'package:customer_listing_desktop_app/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'ProfieleScreen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -47,7 +44,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               // if we got our data
             } else if (snapshot.hasData) {
               // Extracting data from snapshot object
-              final data = snapshot.data as List<DocumentSnapshot>?;
+              final data = snapshot.data as List?;
 
               return ListView.builder(
                   itemCount: data!.length,
@@ -62,7 +59,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       },
 
                       title: Text(
-                        data[i]["customer_name"]+"\'s",
+                        data[i]["fields"]["customer_name"]["stringValue"]+"\'s",
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       subtitle: Text(
@@ -113,4 +110,3 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 }
-*/

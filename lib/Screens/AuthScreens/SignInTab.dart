@@ -4,6 +4,8 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../NetworkServices/AuthenticationHelper.dart';
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -210,8 +212,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     if(passwordController.text.isNotEmpty){
                       //Show Loader
                       PleaseWaitLoaderShow();
-                      //bool isSignInSuccessful = await AuthenticationHelper().signIn(emailAddressController.text,passwordController.text);
-                      bool isSignInSuccessful = false;
+                      bool isSignInSuccessful = await AuthenticationHelper().signIn(emailAddressController.text,passwordController.text);
                       Loader.hide();
                       //Show Dialog Notification
                       if(isSignInSuccessful){

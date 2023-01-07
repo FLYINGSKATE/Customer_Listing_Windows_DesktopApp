@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:customer_listing_desktop_app/NetworkServices/AuthenticationHelper.dart';
 import 'package:customer_listing_desktop_app/utils/globals.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiRepository{
 
@@ -98,6 +99,44 @@ class ApiRepository{
   }
 
   AddCustomer(String text, String text2, String text3, String text4, DateTime dateTime, DateTime dateTime2, String text5, String text6, String text7, String text8, String text9) {}
+
+  Future<List?> FetchListOfCustomers() async {
+    List? docs;
+    final prefs = await SharedPreferences.getInstance();
+    String? mailId = await prefs.getString('email');
+    print("email");
+    print(mailId);
+    if(mailId==null){
+      return null;
+    }
+    //print("Adding"+contact.displayName!);
+    bool isCustomerAddedSuccessfully = false;
+
+    final String pathOfDataDocumentOrCollection = "ashrafking@gmail.com/UserDetails/customers";
+    final String url = "https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${pathOfDataDocumentOrCollection}?key=${key}";
+    // Use fetch to request the API information
+
+    var request = http.Request('GET', Uri.parse(url));
+    //var request = http.Request('GET', Uri.parse('https://ifsc.razorpay.com/BARB0DBGHTW'));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String result = await response.stream.bytesToString();
+      print(result);
+      Map valueMap = jsonDecode(result);
+      print(valueMap);
+      print(valueMap);
+      print(valueMap.keys);
+      docs = valueMap["documents"];
+      print("Documents Dekho");
+      print(docs);
+      return docs;
+    }
+    else {
+      print(response.reasonPhrase);
+      return docs;
+    }
+  }
 
   
 }

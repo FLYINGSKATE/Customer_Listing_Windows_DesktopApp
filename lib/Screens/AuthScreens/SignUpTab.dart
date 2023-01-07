@@ -178,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: ElevatedButton(
                 onPressed: () async {
 
-                  AuthenticationHelper().signIn("vlogstuds6@gmail.com", "password");
+                  //AuthenticationHelper().signIn("vlogstuds6@gmail.com", "password");
                   //ApiRepository().AddUser("papichulo@gmail.com", "password");
                   //Check Validation
 

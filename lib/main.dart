@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme:CustomThemes.light,
       debugShowCheckedModeBanner: false,
-      //initialRoute: '/',
-      initialRoute: 'HomeScreen',
+      initialRoute: '/',
+      //initialRoute: 'HomeScreen',
       onGenerateRoute: ScreenRouter.generateRoute,
 
       /*home: Scaffold(
