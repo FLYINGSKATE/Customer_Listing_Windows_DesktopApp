@@ -40,8 +40,8 @@ class Utility{
       barrierDismissible: true,
       builder: (BuildContext context) {
         return Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Container(
+            width: 400,
             child: Material(
               child: Container(
                 height: 250,
@@ -49,7 +49,7 @@ class Utility{
                   children: [
                     Container(height: 50,
                         margin: const EdgeInsets.only(bottom:20.0),
-                        width: MediaQuery.of(context).size.width,
+                        width: 400,
                         color: isSuccess?Theme.of(context).primaryColor:Colors.redAccent, child: Center(
                           child: Text(title,
                             style: Theme.of(context).textTheme.headline1?.copyWith(

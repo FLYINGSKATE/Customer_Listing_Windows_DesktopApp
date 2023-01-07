@@ -3,6 +3,8 @@ import 'dart:io';
 
 
 
+import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:customer_listing_desktop_app/main.dart';
 import 'package:customer_listing_desktop_app/utils/utility.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -96,33 +98,11 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_sharp,
-            color: Colors.white,
-            size: 30,
-          ),
-          onPressed: () async {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          'Add Customer',
-          style: Theme.of(context).textTheme.headline1?.copyWith(
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
-        actions: [],
-        centerTitle: false,
-        elevation: 2,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -131,6 +111,38 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  WindowTitleBarBox(
+                    child: Container(
+                      color:Theme.of(context).primaryColor,
+                      child: Row(
+                        children: [Expanded(child: MoveWindow()), const WindowButtons()],
+                      ),
+                    ),
+                  ),
+                  AppBar(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    automaticallyImplyLeading: false,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    title: Text(
+                      'Add Customer',
+                      style: Theme.of(context).textTheme.headline1?.copyWith(
+                        color: Colors.white,
+                        fontSize: 22,
+                      ),
+                    ),
+                    actions: [],
+                    centerTitle: false,
+                    elevation: 2,
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                     child: Text("Please Fill Proper Customer Details in the below given Form",

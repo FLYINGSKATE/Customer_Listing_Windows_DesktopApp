@@ -113,119 +113,121 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             ),
             Divider(color:Theme.of(context).primaryColor ,thickness: 2,),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: height*0.71,
-              child: ListView(
-                children: [
-                  SizedBox(height: height*0.02,),
-                  Text("Case Id",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["case_id"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+            Expanded(
 
-                  SizedBox(height: height*0.02,),
-                  Text("Customer Name",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["customer_name"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: ListView(
+                  children: [
+                    SizedBox(height: height*0.02,),
+                    Text("Case Id",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["case_id"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("Address",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["address"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("Customer Name",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["customer_name"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("Area",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["area"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("Address",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["address"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("EGG Name",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["egg_name"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("Area",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["area"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("Mobile Number",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["mobile_number"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("EGG Name",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["egg_name"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("Remark",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["remark"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("Mobile Number",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["mobile_number"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("Unit",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["unit"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
+                    SizedBox(height: height*0.02,),
+                    Text("Remark",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["remark"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
 
-                  SizedBox(height: height*0.02,),
-                  Text("WS",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                  Text(widget.profileData["w_s"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w200,
-                  ),),
-                ],
+                    SizedBox(height: height*0.02,),
+                    Text("Unit",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["unit"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
+
+                    SizedBox(height: height*0.02,),
+                    Text("WS",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                    Text(widget.profileData["w_s"]["stringValue"],style: Theme.of(context).textTheme.headline1?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w200,
+                    ),),
+                  ],
+                ),
               ),
             )
 

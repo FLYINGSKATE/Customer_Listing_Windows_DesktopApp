@@ -3,6 +3,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:customer_listing_desktop_app/main.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/utility.dart';
 import 'SignInTab.dart';
 import 'SignUpTab.dart';
 
@@ -28,7 +29,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
         length: 2,
         child: SafeArea(

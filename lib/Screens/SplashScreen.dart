@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'dart:io' show Platform;
 
+import 'package:customer_listing_desktop_app/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +39,10 @@ class SplashScreenState extends State<SplashScreen> {
   void initState(){
     super.initState();
 
+
+
     WidgetsBinding.instance!.addPostFrameCallback((_) => navigateToProperScreen());
+
 
 
 
@@ -48,6 +52,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     precacheImage(splashScreenLogo, context);
+    //Utility().showCustomDialogBox(false,"awsas","asas",context);
     return Material(
         color: Theme.of(context).backgroundColor,
         child:Container(

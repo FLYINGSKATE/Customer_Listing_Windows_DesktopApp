@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       resizeToAvoidBottomInset: false,
@@ -251,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 seacrhSpecificCustomers = List.from(originalData!);
                 if(searchTextEditingController.text.length>0){
-                  seacrhSpecificCustomers?.removeWhere( (element) => !(element["customer_name"].toString().contains(searchTextEditingController.text)));
+                  seacrhSpecificCustomers?.removeWhere( (element) => !(element["fields"]["customer_name"]["stringValue"].toString().contains(searchTextEditingController.text)));
                   print(seacrhSpecificCustomers?.toList());
                 }
 
