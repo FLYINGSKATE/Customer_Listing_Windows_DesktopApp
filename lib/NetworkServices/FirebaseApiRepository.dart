@@ -148,7 +148,74 @@ class ApiRepository{
 
   }
 
-  AddCustomer(String text, String text2, String text3, String text4, DateTime dateTime, DateTime dateTime2, String text5, String text6, String text7, String text8, String text9) {}
+  Future<bool> AddCustomer(
+      String address,
+      String area,
+      String caseID,
+      String eggName,
+      DateTime endDate,
+      DateTime startDate,
+      String customerName,
+      String remark,
+      String unit,
+      String ws,
+      String customerMobileNumber,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+    String? mailId = await prefs.getString('mail_id');
+    print("mailId");
+    print(mailId);
+    if(mailId==null){
+      return false;
+    }
+    //print("Adding"+contact.displayName!);
+
+    var formatter = new DateFormat('yyyy-MM-ddTHH:mm:ss');
+    String endDateString = formatter.format(endDate);
+    String startDateString = formatter.format(startDate);
+
+
+    var headers = {
+      'Content-Type': 'application/json'
+      //If U Use Authentication For Secure Access
+      //Only Signed User Can Access if
+      //'Authorization': "Bearer %s" % id_token
+    };
+
+    var request = http.Request('POST', Uri.parse('https://firestore.googleapis.com/v1beta1/projects/customerlistingapp/databases/(default)/documents/$mailId?documentId=UserDetails'));
+    request.body = json.encode({
+      //"documentId": {"stringValue": "Maaki"},
+      "fields": {
+        "mail_id": {"stringValue": mailId},
+
+        "address":{"stringValue": address},
+        "area":{"stringValue": area},
+        "case_id":{"stringValue": caseID},
+        "customer_name":{"stringValue": customerName},
+        "egg_name":{"stringValue": eggName},
+        "end_date":{"timestampValue": endDateString+"Z"},
+        "mobile_number":{"stringValue": customerMobileNumber},
+        "remark":{"stringValue": remark},
+        "start_date":{"timestampValue": startDateString+"Z"},
+        "unit":{"stringValue": unit},
+        "w_s":{"stringValue": ws},
+      }
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return true;
+    }
+    else {
+      print(response.reasonPhrase);
+      return false;
+    }
+  }
+
 
   Future<List?> FetchListOfCustomers() async {
     List? docs;
