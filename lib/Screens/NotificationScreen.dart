@@ -45,21 +45,25 @@ class _NotificationScreenState extends State<NotificationScreen> {
             } else if (snapshot.hasData) {
               // Extracting data from snapshot object
               final data = snapshot.data as List?;
+              print("Ashraf Data Dekh");
+              print(data![0]);
 
               return ListView.builder(
                   itemCount: data!.length,
                   itemBuilder: (c,i){
+                    print(data[0]["document"]["fields"]["customer_name"]["stringValue"]+"\'s");
+
                     return ListTile(
 
                       onTap: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProfileScreen(profileData: data[i])),
+                          MaterialPageRoute(builder: (context) => ProfileScreen(profileData: data[i]["document"]["fields"])),
                         );
                       },
 
                       title: Text(
-                        data[i]["fields"]["customer_name"]["stringValue"]+"\'s",
+                        data[i]["document"]["fields"]["customer_name"]["stringValue"]+"\'s",
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       subtitle: Text(

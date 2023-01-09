@@ -105,21 +105,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         print(element["fields"]["end_date"]);
                         print(element["fields"]["end_date"]["timestampValue"].runtimeType);
 
-                        DateFormat inputFormatter = DateFormat("yyyy-MM-dd'T'HH:mm:SS'Z'");
+                        DateFormat inputFormatter = DateFormat("yyyy-MM-ddTHH:mm:ss");
 
                         //DateTime date = inputFormatter.parse("2018-04-10T04:00:00.000Z");
-                        DateTime date = inputFormatter.parse(element["fields"]["end_date"]["timestampValue"]);
+                        //DateTime date = inputFormatter.parse(element["fields"]["end_date"]["timestampValue"]);
 
                         print("date dekh bc");
-                        print(date);
 
 
-                        if(DateTime.now().isBefore(inputFormatter.parse(element["fields"]["end_date"]["timestampValue"])) || DateTime.now().isAtSameMomentAs(inputFormatter.parse(element["fields"]["end_date"]["timestampValue"]))){
+
+                        if(DateTime.now().isBefore(inputFormatter.parse(element["fields"]["end_date"]["timestampValue"].toString().replaceAll("Z", ""))) || DateTime.now().isAtSameMomentAs(inputFormatter.parse(element["fields"]["end_date"]["timestampValue"].toString().replaceAll("Z", "")))){
                           count++;
                         }
                       });
 
-                      return (count==0)?InkWell(
+                      return (count!=0)?InkWell(
                         onTap: () {
                           print('IconButton pressed ...');
                           Navigator.pushNamed(context, 'NotificationScreen');

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:customer_listing_desktop_app/NetworkServices/AuthenticationHelper.dart';
 import 'package:customer_listing_desktop_app/utils/globals.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiRepository{
@@ -11,24 +12,73 @@ class ApiRepository{
   final String key = 'AIzaSyBed6jFQKAQ_Dljm-awl3CHqrnHGYLVmPw';
 
 
-  FetchListOfNotifications() async {
+  Future<List?> FetchListOfNotifications() async {
 
-    final String pathOfDataDocumentOrCollection = "funkaaratoons@gmail.com/UserDetails/customers";
-    final String url = "https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${pathOfDataDocumentOrCollection}?key=${key}";
+    List? docs;
+    final prefs = await SharedPreferences.getInstance();
+    String? mailId = await prefs.getString('email');
+    print("email");
+    print(mailId);
+    if(mailId==null){
+      return null;
+    }
+    print("StartQuery");
+
+    final String pathOfDataDocumentOrCollection = "ashrafking@gmail.com/UserDetails";
+    final String url = "https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/ashrafking@gmail.com/UserDetails:runQuery?key=${key}";
     // Use fetch to request the API information
 
-    var request = http.Request('GET', Uri.parse(url));
+    var request = http.Request('POST', Uri.parse(url));
+
+    print("Apna Date Time Hai!");
+    DateFormat inputFormatter = DateFormat("yyyy-MM-dd'T'HH:mm:SS'Z'");
+
+    //DateTime date = inputFormatter.parse("2018-04-10T04:00:00.000Z");
+
+
+
+    var formatter = new DateFormat('yyyy-MM-ddTHH:mm:ss');
+    String formattedDate = formatter.format(DateTime.now());
+    print("formattedDate");
+    print(formattedDate);
+
+
+    //where("end_date", isLessThanOrEqualTo: new DateTime.now())
+    request.body = json.encode({
+      "structuredQuery": {
+        "where" : {
+          "fieldFilter" : {
+            "field": {"fieldPath": "end_date"},
+            "op":"LESS_THAN_OR_EQUAL",
+            "value": {"timestampValue":formattedDate+'Z' }
+          }
+        },
+        "from": [{"collectionId": "customers"}]
+      }
+    });
+
     //var request = http.Request('GET', Uri.parse('https://ifsc.razorpay.com/BARB0DBGHTW'));
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       String result = await response.stream.bytesToString();
       print(result);
-      return result;
+      print("Documents Dekho not");
+      List valueMap = jsonDecode(result);
+      print(valueMap);
+      print("Documents Dekho not");
+      print(valueMap);
+      print(valueMap);
+      docs = valueMap;
+      print("Documents Dekho not");
+      print(docs);
+      return docs;
     }
     else {
+      print("response.reasonPhrase NOT");
+      print("response.reasonPhrase NOT");
       print(response.reasonPhrase);
-      return "Not Found";
+      return docs;
     }
 
   }

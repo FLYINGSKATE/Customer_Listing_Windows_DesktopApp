@@ -20,12 +20,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     double height = MediaQuery.of(context).size.height;
 
-    DateFormat inputFormatter = DateFormat("yyyy-MM-dd'T'HH:mm:SS'Z'");
+    DateFormat inputFormatter = DateFormat("yyyy-MM-ddTHH:mm:ss");
     print("widget.profileData");
     print(widget.profileData);
 
-    String startDate = DateFormat('dd/MM/yyyy').format((inputFormatter.parse(widget.profileData["start_date"]["timestampValue"])));
-    String endDate = DateFormat('dd/MM/yyyy').format((inputFormatter.parse(widget.profileData["end_date"]["timestampValue"])));
+    String startDate = DateFormat('dd/MM/yyyy').format((inputFormatter.parse(widget.profileData["start_date"]["timestampValue"].toString().replaceAll("Z", ""))));
+    String endDate = DateFormat('dd/MM/yyyy').format((inputFormatter.parse(widget.profileData["end_date"]["timestampValue"].toString().replaceAll("Z", ""))));
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
