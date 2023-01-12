@@ -7,6 +7,8 @@ import 'package:customer_listing_desktop_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
+import 'NetworkServices/FirebaseApiRepository.dart';
+
 void main() {
   runApp(const MyApp());
   doWhenWindowReady(() {
@@ -87,7 +89,13 @@ class RightSide extends StatelessWidget {
             child: Row(
               children: [Expanded(child: MoveWindow()), const WindowButtons()],
             ),
-          )
+          ),
+          InkWell(
+            onTap: (){
+              ApiRepository().callApiForBulkAddition();
+            },
+            child: Text("PRESS ME"),
+          ),
         ]),
       ),
     );

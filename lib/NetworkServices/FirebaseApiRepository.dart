@@ -229,7 +229,7 @@ class ApiRepository{
     //print("Adding"+contact.displayName!);
     bool isCustomerAddedSuccessfully = false;
 
-    final String pathOfDataDocumentOrCollection = "ashrafking@gmail.com/UserDetails/customers";
+    final String pathOfDataDocumentOrCollection = "kentOwner@gmail.com/UserDetails/customers";
     final String url = "https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${pathOfDataDocumentOrCollection}?key=${key}";
     // Use fetch to request the API information
 
@@ -255,5 +255,128 @@ class ApiRepository{
     }
   }
 
-  
+
+
+  Future? callApiForBulkAddition() async {
+
+
+    String? mailId = "kentOwner@gmail.com";
+    print("mailId");
+    print(mailId);
+    if(mailId==null){
+      return false;
+    }
+    //print("Adding"+contact.displayName!);
+
+
+    // String endDateString = formatter.format(endDate);
+    //String startDateString = formatter.format(startDate);
+
+
+    var headers = {
+      'Content-Type': 'application/json'
+      //If U Use Authentication For Secure Access
+      //Only Signed User Can Access if
+      //'Authorization': "Bearer %s" % id_token
+    };
+
+
+
+    var request = http.Request('POST', Uri.parse('https://firestore.googleapis.com/v1beta1/projects/customerlistingapp/databases/(default)/documents/$mailId?documentId=UserDetails'));
+
+
+    var formatter = new DateFormat('yyyy-MM-ddTHH:mm:ss');
+    final dateRegEx = RegExp(r'^\d\d/\d\d/\d\d\d\d$');
+    dateRegEx.hasMatch('abc123');
+    String startDate="";
+    String endDate="";
+    myList.forEach((element) async {
+
+      if(dateRegEx.hasMatch(element["start_date"])){
+        startDate = formatter.format(DateFormat('MM/dd/yyyy').parse(element["start_date"]));
+      }
+
+      if(element.containsKey("end_date")){
+        if(dateRegEx.hasMatch(element["end_date"])){
+          endDate = formatter.format(DateFormat('MM/dd/yyyy').parse(element["endDate"]));
+        }
+        else{
+          endDate = formatter.format(DateTime.now().add(Duration(days: 90)));
+        }
+      }
+      else{
+        endDate = formatter.format(DateTime.now().add(Duration(days: 90)));
+      }
+
+      ApiRepository().AddBulkApi(element["address"], element["area"], element["case_id"], element["egg_name"], endDate, startDate, element["customer_name"].toString(), element["remark"], element["unit"], element["w_s"], element["mobile_number"].toString());
+
+    });
+  }
+
+  Future<bool> AddBulkApi(
+      String address,
+      String area,
+      String caseID,
+      String eggName,
+      String endDate,
+      String startDate,
+      String customerName,
+      String remark,
+      String unit,
+      String ws,
+      String customerMobileNumber,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+    String? mailId = "kentOwner@gmail.com";
+    print("mailId");
+    print(mailId);
+    if(mailId==null){
+      return false;
+    }
+    //print("Adding"+contact.displayName!);
+
+
+
+    var headers = {
+      'Content-Type': 'application/json'
+      //If U Use Authentication For Secure Access
+      //Only Signed User Can Access if
+      //'Authorization': "Bearer %s" % id_token
+    };
+
+    var request = http.Request('POST', Uri.parse('https://firestore.googleapis.com/v1beta1/projects/customerlistingapp/databases/(default)/documents/$mailId/UserDetails/customers'));
+    request.body = json.encode({
+      //"documentId": {"stringValue": "Maaki"},
+      "fields": {
+        "mail_id": {"stringValue": mailId},
+        "address":{"stringValue": address},
+        "area":{"stringValue": area},
+        "case_id":{"stringValue": caseID},
+        "customer_name":{"stringValue": customerName},
+        "egg_name":{"stringValue": eggName},
+        "end_date":{"timestampValue": endDate+"Z"},
+        "mobile_number":{"stringValue": customerMobileNumber},
+        "remark":{"stringValue": remark},
+        "start_date":{"timestampValue": startDate+"Z"},
+        "unit":{"stringValue": unit},
+        "w_s":{"stringValue": ws},
+      }
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return true;
+    }
+    else {
+      print(response.reasonPhrase);
+      return false;
+    }
+  }
+
+
+
 }

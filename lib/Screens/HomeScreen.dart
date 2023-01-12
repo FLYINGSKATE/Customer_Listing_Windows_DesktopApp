@@ -312,6 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: Container(
+                    height: MediaQuery.of(context).size.height*0.7,
                     child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
