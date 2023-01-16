@@ -290,7 +290,12 @@ class ApiRepository{
     dateRegEx.hasMatch('abc123');
     String startDate="";
     String endDate="";
+
     myList.forEach((element) async {
+
+      if(element["end_date"]==null||element["end_date"]==""){
+        element["end_date"]=DateFormat('MM/dd/yyyy').parse(DateTime.now().toString());
+      }
 
       if(dateRegEx.hasMatch(element["start_date"])){
         startDate = formatter.format(DateFormat('MM/dd/yyyy').parse(element["start_date"]));
@@ -298,7 +303,7 @@ class ApiRepository{
 
       if(element.containsKey("end_date")){
         if(dateRegEx.hasMatch(element["end_date"])){
-          endDate = formatter.format(DateFormat('MM/dd/yyyy').parse(element["endDate"]));
+          endDate = formatter.format(DateFormat('MM/dd/yyyy').parse(element["end_date"]));
         }
         else{
           endDate = formatter.format(DateTime.now().add(Duration(days: 90)));
@@ -344,6 +349,8 @@ class ApiRepository{
       //Only Signed User Can Access if
       //'Authorization': "Bearer %s" % id_token
     };
+
+
 
     var request = http.Request('POST', Uri.parse('https://firestore.googleapis.com/v1beta1/projects/customerlistingapp/databases/(default)/documents/$mailId/UserDetails/customers'));
     request.body = json.encode({

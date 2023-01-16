@@ -252,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 seacrhSpecificCustomers = List.from(originalData!);
                 if(searchTextEditingController.text.length>0){
-                  seacrhSpecificCustomers?.removeWhere( (element) => !(element["fields"]["customer_name"]["stringValue"].toString().contains(searchTextEditingController.text)));
+                  seacrhSpecificCustomers?.removeWhere( (element) => !(element["fields"]["customer_name"]["stringValue"].toString().toUpperCase().contains(searchTextEditingController.text.toUpperCase())));
                   print(seacrhSpecificCustomers?.toList());
                 }
 
